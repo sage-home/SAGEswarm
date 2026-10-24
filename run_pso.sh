@@ -11,7 +11,7 @@ OUTPUT_PATH="./millennium_pso"
 PARTICLES=10
 ITERATIONS=50
 TEST="chi2"
-CONSTRAINTS="SMF_z0,CSFRDH"
+CONSTRAINTS="SMF_z0"
 CSVOUTPUT="./millennium_pso/pso.csv"
 SPACEFILE="./space.txt"
 

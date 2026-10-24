@@ -1,0 +1,3 @@
+SfrEfficiency,aSF,1,0.005,0.2
+FeedbackReheatingEpsilon,eDisk,0,2.0,4.0
+FeedbackEjectionEfficiency,eHalo,0,0.1,1.0

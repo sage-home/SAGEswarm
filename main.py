@@ -426,6 +426,13 @@ def main():
         if isinstance(alist_header, bytes):
             alist_header = alist_header.decode('utf-8', 'replace')
 
+        # Relative paths are relative to where SAGE runs, not to here --
+        # resolve them the same way OutputDir is.
+        sage_dir = os.path.dirname(opts.sage_binary)
+        alist_par, alist_header = (
+            os.path.join(sage_dir, c) if c and not os.path.isabs(c) else c
+            for c in (alist_par, alist_header))
+
         if opts.age_alist_file is None:
             for candidate, source in ((alist_header, 'the SAGE output header'),
                                       (alist_par, os.path.basename(opts.config))):
