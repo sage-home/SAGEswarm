@@ -1765,6 +1765,14 @@ def processing(tracks_dir, space_file, output_dir, config_opts, space=None):
     except Exception as e:
         logger.error(f"Error creating corner plot: {e}")
 
+    # Swarm evolution GIF — likewise always attempted
+    try:
+        gif_path = os.path.join(output_dir, 'parameter_evolution.gif')
+        create_swarm_gif_from_tracks(tracks_dir, space_file, gif_path)
+        logger.info(f"Parameter evolution GIF saved to {gif_path}")
+    except Exception as e:
+        logger.error(f"Error creating GIF animation: {str(e)}")
+
     # Get SMF and BHMF files mapping with observational data
     # PSO health: convergence, per-constraint breakdown, parameter collapse and
     # bound contact.  Produced first because it is what tells you whether the
@@ -2306,14 +2314,6 @@ def processing(tracks_dir, space_file, output_dir, config_opts, space=None):
             output_dir=output_dir,
             csv_output_path=output_dir
         )
-
-        # Create .gif if possible
-        try:
-            gif_path = os.path.join(output_dir, 'parameter_evolution.gif')
-            create_swarm_gif_from_tracks(tracks_dir, space_file, gif_path)
-            logger.info(f"Parameter evolution GIF saved to {gif_path}")
-        except Exception as e:
-            logger.error(f"Error creating GIF animation: {str(e)}")
 
         # After creating all individual plots
         logger.info("Creating combined constraint grid plots...")
